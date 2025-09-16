@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: jerry-bot
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node bot.js"
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+    autoDeploy: true

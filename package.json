@@ -1,0 +1,19 @@
+{
+  "name": "messenger-bot",
+  "version": "1.0.0",
+  "description": "Messenger bot with webpanel for appstate and owner UID",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "ws3-fca": "^1.0.3",
+    "moment": "^2.29.4",
+    "npmlog": "^6.0.2",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
