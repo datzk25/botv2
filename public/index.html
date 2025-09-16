@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lovers Bot Panel 💕</title>
+  <style>
+    body, html {
+  margin: 0;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background: transparent;  /* bỏ nền đen */
+  overflow: hidden;
+}
+
+    /* Background ảnh full màn */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://raw.githubusercontent.com/datzk25/file/main/a30f8fb06f92e57e56d5e76302b11b5f.jpg") no-repeat center center fixed;
+      background-size: cover;
+      z-index: -2;
+    }
+
+    /* Overlay mờ */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.25);
+      z-index: -1;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,105,180,0.3);
+      border-radius: 20px;
+      padding: 20px;
+      width: 90%;
+      max-width: 420px; /* không vượt quá */
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255,105,180,0.5),
+                  0 0 45px rgba(120,0,255,0.3);
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff6ec7, #9b5cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      gap: 6px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      background: rgba(255,255,255,0.1);
+      transition: 0.3s;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, #ff3366, #9b5cff);
+      font-weight: bold;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255,105,180,0.6);
+    }
+
+    .tab-content {
+      display: none;
+      text-align: left;
+      animation: fadeTab 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input {
+      background: rgba(255,255,255,0.95);
+      color: #333;
+    }
+
+    input:focus {
+      box-shadow: 0 0 12px rgba(255,105,180,0.8);
+    }
+
+    button {
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff3366, #9b5cff);
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ff1744, #7a42f4);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(255,105,180,0.8);
+    }
+
+    #logs {
+      margin-top: 12px;
+      height: 130px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      box-shadow: inset 0 0 8px rgba(255,105,180,0.4);
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .socials a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 15px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .socials a:hover {
+      background: linear-gradient(135deg, #ff3366, #9b5cff);
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(255,105,180,0.6);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeTab {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Mobile tối ưu */
+    @media (max-width: 480px) {
+      h1 { font-size: 18px; }
+      .tab { font-size: 12px; padding: 6px; }
+      input, button { font-size: 14px; padding: 10px; }
+      .socials a { font-size: 13px; padding: 8px 12px; }
+    }
+  </style>
+  <!-- icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <div class="panel">
+    <h1>💕 Lovers Bot Panel 💕</h1>
+
+    <div class="tabs">
+      <div class="tab active" onclick="showTab(0)">👑 Admin</div>
+      <div class="tab" onclick="showTab(1)">🤖 Bot</div>
+      <div class="tab" onclick="showTab(2)">⚡ Commands</div>
+      <div class="tab" onclick="showTab(3)">🌐 Social</div>
+    </div>
+
+    <!-- Tab 1: Admin -->
+    <div class="tab-content active">
+      <p><b>Admin Name:</b> Đạt Tiến</p>
+      <p><b>UID:</b> 1234567890</p>
+      <p><b>Email:</b> admin@example.com</p>
+      <p><b>Uptime:</b> <span id="uptime">Loading...</span></p>
+    </div>
+
+    <!-- Tab 2: Bot -->
+    <div class="tab-content">
+      <form id="startForm">
+        <input type="file" name="appstate" required />
+        <input type="text" name="owner" placeholder="Enter Owner UID" required />
+        <button type="submit">🚀 Start Bot</button>
+      </form>
+      <button onclick="stopBot()">🛑 Stop Bot</button>
+      <div id="logs">Logs will appear here...</div>
+    </div>
+
+    <!-- Tab 3: Commands -->
+    <div class="tab-content">
+      <ul>
+        <li><b>!help</b> – Hiển thị danh sách lệnh</li>
+        <li><b>!info</b> – Xem thông tin bot</li>
+        <li><b>!restart</b> – Khởi động lại bot</li>
+        <li><b>!target UID</b> – Đặt mục tiêu</li>
+        <li><b>!cleartarget</b> – Xóa mục tiêu</li>
+      </ul>
+    </div>
+
+    <!-- Tab 4: Social -->
+    <div class="tab-content">
+      <div class="socials">
+        <a href="https://facebook.com" target="_blank"><i data-feather="facebook"></i> Facebook</a>
+        <a href="https://zalo.me" target="_blank"><i data-feather="message-circle"></i> Zalo</a>
+        <a href="https://t.me" target="_blank"><i data-feather="send"></i> Telegram</a>
+        <a href="https://github.com" target="_blank"><i data-feather="github"></i> GitHub</a>
+        <a href="https://instagram.com" target="_blank"><i data-feather="instagram"></i> Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(index) {
+      document.querySelectorAll(".tab").forEach((t,i)=> {
+        t.classList.toggle("active", i===index);
+      });
+      document.querySelectorAll(".tab-content").forEach((c,i)=> {
+        c.classList.toggle("active", i===index);
+      });
+    }
+
+    feather.replace(); // load icons
+
+    const logs = document.getElementById("logs");
+    function addLog(msg) {
+      const p = document.createElement("div");
+      p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      logs.appendChild(p);
+      if (logs.childNodes.length > 100) logs.removeChild(logs.firstChild);
+      logs.scrollTop = logs.scrollHeight;
+    }
+
+    document.getElementById("startForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch("/start", { method: "POST", body: formData });
+      const data = await res.json();
+      addLog(data.message);
+    });
+
+    async function stopBot() {
+      const res = await fetch("/stop", { method: "POST" });
+      const data = await res.json();
+      addLog(data.message);
+    }
+
+    function formatTime(seconds) {
+      const d = Math.floor(seconds / 86400);
+      const h = Math.floor((seconds % 86400) / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      return `${d}d ${h}h ${m}m ${s}s`;
+    }
+
+    setInterval(async () => {
+      const res = await fetch("/status");
+      const data = await res.json();
+
+      if (data.uptime !== undefined) {
+        document.getElementById("uptime").textContent = formatTime(data.uptime);
+      }
+      addLog(`Status: ${data.running ? "✅ Running" : "❌ Stopped"} | Owner: ${data.owner || "-"}`);
+    }, 5000);
+  </script>
+</body>
+    </html>
